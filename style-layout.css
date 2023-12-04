@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+.html_screen {margin-top: 60px;}
+.menu_bar {display: flex; align-items: center; padding: 0 20px; height: 60px;
+    top:0; left: 0;
+}
+.menu_bar ul {display: flex; margin: 0;padding: 0;}
+.menu_bar ul li a {padding: 16px 16px;}
+.menu_bar span {position: absolute;right: 5%;}
+.menu_bar ul .dropdown {position: relative; z-index: -1;}
+.menu_bar ul .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    margin-top: 10px;
+    z-index: 10; 
+}
+@media screen and (max-width: 768px) { /* 모바일 및 태블릿 대응 */
+    .menu_bar ul {
+        flex-direction: column;
+    }
+
+    .dropdown .dropdown-content {
+        min-width: 100%;
+        top: 100%; /* 메뉴바의 높이가 변화하더라도 맞춰서 설정 */
+    }
+}

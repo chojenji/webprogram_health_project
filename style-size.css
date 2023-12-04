@@ -1,0 +1,4 @@
+.menu_bar a {height: 100%; width: auto;}
+.menu_bar a img {height: 100%; width: auto;}
+.main_video iframe {position:fixed; width: 100%; height: 100%; object-fit: cover;}
+.menu_bar li, .menu_bar span {font-size: 10pt;}
