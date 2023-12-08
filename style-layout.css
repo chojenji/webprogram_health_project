@@ -35,5 +35,12 @@ html, body {
 .subtitle {margin-bottom: 20px;}
 .subtitle-content {margin-left: 20px;}
 #map {margin-top: 20px; margin-bottom: 20px;}
-.date-month {margin-top: 30px;}
-.Calendar {text-align: center; margin: 0 auto;}
+.date-month {
+    margin-top: 30px;
+    display: flex; /* Flexbox 레이아웃 적용 */
+    align-items: start; /* 자식 요소들을 세로 중앙에 정렬 */
+}
+.Calendar {text-align: center; margin: 0 20px;}
+.Calendar-text {
+    margin-top: 150px;
+}

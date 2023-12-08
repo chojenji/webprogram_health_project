@@ -15,6 +15,35 @@
     let today = new Date();     // 페이지를 로드한 날짜를 저장
     today.setHours(0,0,0,0);    // 비교 편의를 위해 today의 시간을 초기화
 
+    const holidays = [
+        { year: 2023, month: 1, day: 1 }, // 신정
+        { year: 2023, month: 1, day: 21},
+        { year: 2023, month: 1, day: 22},
+        { year: 2023, month: 1, day: 23},
+        { year: 2023, month: 1, day: 24},
+        { year: 2023, month: 3, day: 1},
+        { year: 2023, month: 5, day: 5 },
+        { year: 2023, month: 5, day: 27},
+        { year: 2023, month: 5, day: 28},
+        { year: 2023, month: 5, day: 29},
+        { year: 2023, month: 6, day: 6},
+        { year: 2023, month: 8, day: 15},
+        { year: 2023, month: 9, day: 28},
+        { year: 2023, month: 9, day: 29},
+        { year: 2023, month: 9, day: 30},
+        { year: 2023, month: 10, day: 1},
+        { year: 2023, month: 10, day: 2},
+        { year: 2023, month: 10, day: 3},
+        { year: 2023, month: 10, day: 9},
+        { year: 2023, month: 12, day: 25}
+    ];
+    
+    // 날짜가 공휴일인지 확인하는 함수
+    function isHoliday(year, month, day) {
+        return holidays.some(holiday => 
+            holiday.year === year && holiday.month === month && holiday.day === day
+        );
+    }
     // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
     function buildCalendar() {
         // Date 객체의 월은 0부터 시작
@@ -41,9 +70,14 @@
             let nowColumn = nowRow.insertCell(); // 새 열을 추가하고
      
             nowColumn.innerText = leftPad(nowDay.getDate());      // 추가한 열에 날짜 입력
+
+            // 공휴일 확인 및 스타일 적용
+            if (isHoliday(nowDay.getFullYear(), nowDay.getMonth() + 1, nowDay.getDate())) {
+                nowColumn.style.color = "#DC143C";
+            }
             
-            if (nowMonth.getMonth() == 4 && nowDay.getDate() == 17) { // 5월(월은 0부터 시작) 17일을 체크
-                nowColumn.style.color = "#DC143C"; // 클래스 추가
+            if (nowMonth.getMonth() == 4 && nowDay.getDate() == 17) { // 개교기념일 휴무, 5월(월은 0부터 시작) 17일을 체크
+                nowColumn.style.color = "#DC143C"; 
             }
         
             if (nowDay.getDay() == 0) {                 // 일요일인 경우 글자색 빨강으로
@@ -106,7 +140,7 @@
         <li class="dropdown"><a href="introduce.html">헬스장 소개</a>
             <div class="dropdown-content">
                 <a href="introduce_location.html">위치 및 정보</a>
-                <a href="introduce_calender.html">휴무일</a>
+                <a href="introduce_calender.html">휴무일 및 운영시간</a>
                 <a href="introduce_trainers.html">트레이너 소개</a>
             </div>
         </li>
@@ -132,29 +166,35 @@
         <h2>헬스장 소개 | </h2><h4>휴무일</h4>
     </div>
     <div class="date-month">
-    <table class="Calendar">
-        <thead>
-            <tr>
-                <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
-                <td colspan="5">
-                    <span id="calYear"></span>년
-                    <span id="calMonth"></span>월
-                </td>
-                <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
-            </tr>
-            <tr>
-                <th>일</th>
-                <th>월</th>
-                <th>화</th>
-                <th>수</th>
-                <th>목</th>
-                <th>금</th>
-                <th>토</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+        <table class="Calendar">
+            <thead>
+                <tr>
+                    <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
+                    <td colspan="5">
+                        <span id="calYear"></span>년
+                        <span id="calMonth"></span>월
+                    </td>
+                    <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
+                </tr>
+                <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="Calendar-text">
+            <img src="images/circle_list_style.png">
+            휴무 : 주말, 공휴일, 개교기념일 <br><br>
+            <img src="images/circle_list_style.png">
+            운영시간 : 09:00 ~ 17:00 (수업시간 제외)
+        </div>
     </div>
 </div>
 </body>
