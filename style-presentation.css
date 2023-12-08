@@ -1,3 +1,6 @@
+html {
+    font-family: 'Spoqa Han Sans Neo', sans-serif;
+}
 .menu_bar {
     background-color: #0F3178; 
     position: fixed; 
@@ -21,4 +24,28 @@
 .menu_bar ul .dropdown .dropdown-content a {
     display: block;
     background-color: rgba(143, 162, 199, 0.81);
+}
+@import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
+.Calendar>thead>tr:first-child>td { 
+    font-weight: bold; 
+    font-size: 15pt;
+}
+
+.Calendar>tbody>tr>td {
+    border-radius: 50%;
+} 
+.today{            
+    background-color: #d4d4d4d1;            
+    cursor: pointer;
+}
+.pastDay.choiceDay, .futureDay.choiceDay, .today.choiceDay{            
+    background-color: #506daaab;            
+    color: #fff;
+    cursor: pointer;
+}
+.html_screen div {
+    font-weight: bold;
+}
+.subtitle {
+    color: #0F3178;
 }
