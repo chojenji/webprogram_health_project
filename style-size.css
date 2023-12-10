@@ -3,8 +3,12 @@
 .main_video {position:relative;  width: 100%; height: 100%; object-fit: cover;}
 .menu_bar li, .menu_bar span {font-size: 10pt;}
 
+#map { 
+    width:700px;
+    height:500px;
+}
 .Calendar {width: 600px; height: auto;}
-.Calendar td{width: 60px; height: 60px;}
+.Calendar td{width: 60px; height: 70px;}
 .subtitle {font-size: 15pt;}
 .locker-title {font-size: 15pt;}
 .login p {font-size: 20pt;}

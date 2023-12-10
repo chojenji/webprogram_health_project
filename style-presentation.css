@@ -1,5 +1,6 @@
 html {
     font-family: 'Spoqa Han Sans Neo', sans-serif;
+    color: rgba(35, 38, 40, 0.9);
 }
 .menu_bar {
     background-color: #0F3178; 
@@ -15,15 +16,15 @@ html {
 }
 .menu_bar .dropdown:hover .dropdown-content {
     display: block; /* 드롭다운 메뉴를 보여줍니다 */
-    background-color: rgba(143, 162, 199, 0.81);
+    background-color: rgba(143, 162, 199, 0.7);
 }
 .menu_bar .dropdown .dropdown-content:hover{
     display: block;
-    background-color: rgba(143, 162, 199, 0.81);
+    background-color: rgba(143, 162, 199, 0.7);
 }
 .menu_bar ul .dropdown .dropdown-content a {
     display: block;
-    background-color: rgba(143, 162, 199, 0.81);
+    background-color: rgba(143, 162, 199, 0.7);
 }
 @import url('https://fonts.googleapis.com/css?family=Questrial&display=swap');
 .Calendar>thead>tr:first-child>td { 
@@ -34,20 +35,27 @@ html {
 .Calendar>tbody>tr>td {
     border-radius: 50%;
 } 
+.Calendar th{
+    color: #979797;
+}
 .today{            
     background-color: #d4d4d4d1;            
     cursor: pointer;
 }
 .pastDay.choiceDay, .futureDay.choiceDay, .today.choiceDay{            
-    background-color: #506daaab;            
+    background-color: rgba(143, 162, 199, 0.7);            
     color: #fff;
     cursor: pointer;
 }
 .html_screen div {
     font-weight: bold;
 }
-.subtitle {
-    color: #0F3178;
+.title, .subtitle  {
+    font-weight:bolder;
+}
+
+.subtitle-content {
+    color: rgba(35, 38, 40, 0.7);
 }
 .login p {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
