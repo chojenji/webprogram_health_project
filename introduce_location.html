@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="style-layout.css"/>
 <link rel="stylesheet" type="text/css" href="style-presentation.css"/>
 <script type="text/javascript"
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkot_BduKSAnfBgCpIM_km40Zub6j8wM" async defer></script>
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkot_BduKSAnfBgCpIM_km40Zub6j8wM&callback=initMap" async defer></script>
 <script type="text/javascript">
     function initMap() {
         //상명 스포츠센터 위,경도
@@ -38,7 +38,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkot_BduKSAnfBgCpIM_km40
 <div class="menu_bar">
     <a href="main.html"><img src="images/sum_logo_menu.png" alt="SMU LOGO"/></a>
     <ul>
-        <li class="dropdown"><a href="introduce.html">헬스장 소개</a>
+        <li class="dropdown"><a href="#">헬스장 소개</a>
             <div class="dropdown-content">
                 <a href="introduce_location.html">위치 및 정보</a>
                 <a href="introduce_calender.html">휴무일 및 운영시간</a>
@@ -46,20 +46,19 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkot_BduKSAnfBgCpIM_km40
             </div>
         </li>
         <li><a href="notice.html">공지사항</a></li>
-        <li class="dropdown"><a href="health.html">운동 안내</a>
+        <li class="dropdown"><a href="#">운동 안내</a>
             <div class="dropdown-content">
                 <a href="health_introduce.html">운동 기구 소개</a>
                 <a href="machine_use.html">기구별 사용법</a>
                 <a href="muscle_use.html">부위별 사용법</a>
             </div>
         </li>
-        <li class="dropdown"><a href="registration.html">등록 및 결제</a></li>
         <li><a href="service_center.html">고객센터</a></li>
     </ul>
     <span>
-        <a href="login.html">로그인</a>
+        <a href="login.html" id="loginLink">로그인</a>
         /
-        <a>로그아웃</a>
+        <a href="mypage.html">마이페이지</a>
     </span>
 </div>
 
@@ -86,5 +85,6 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbkot_BduKSAnfBgCpIM_km40
     TEL. 041-550-5334   /  FAX. 041-550-5339
 </div>
 </div>
+<script type="text/javascript" src="loginStatus.js"></script> <!--위치 중요-->
 </body>
 </html>

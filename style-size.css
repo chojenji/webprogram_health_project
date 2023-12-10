@@ -6,3 +6,26 @@
 .Calendar {width: 600px; height: auto;}
 .Calendar td{width: 60px; height: 60px;}
 .subtitle {font-size: 15pt;}
+.locker-title {font-size: 15pt;}
+.login p {font-size: 20pt;}
+.login fieldset input#username, .login fieldset input#password {
+    width: 300px; height: 30px;
+}
+.login #login_button, .login #register {
+     width: 100px; height: 30px;
+}
+#login_bottom {height: 200px;}
+#login_bottom img {width: auto;height: 150px;}
+.profile {height: auto; width: auto;}
+.profile img{width: 100px; height: auto;}
+#text-profile {font-size: 15pt;}
+.sub-membership {font-size: 15pt;}
+.button #payment_btn {
+    height: 30px; width: auto;
+}
+.locker{
+    height: 60px;
+}
+.locker button{
+    height: 30px;
+}

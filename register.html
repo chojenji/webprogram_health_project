@@ -10,26 +10,22 @@
 <link rel="stylesheet" type="text/css" href="style-presentation.css"/>
 <script type="text/javascript" src="loginStatus.js"></script>
 <script type="text/javascript">
-    // 회원가입 버튼 클릭시
-    function redirectToRegister() {
-        window.location.href = 'register.html';
-    }
-    // 로그인 기능
-    function loginUser(){
-        event.preventDefault(); // 폼의 기본 제출 동작 방지
+    function registerUser() {
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
-
-        // localStorage에서 사용자 정보 가져오기
-        var storedPassword = localStorage.getItem(username);
-
-        if(password == storedPassword) {
-            // 로그인 성공
-            sessionStorage.setItem('currentUser', username); // 현재 사용자를 sessionStorage에 저장
-            window.location.href = 'mypage.html'; // 마이페이지로 리디렉션
-        } else {
-            // 로그인 실패
-            alert('로그인 실패: 아이디 또는 비밀번호가 잘못되었습니다.');
+        
+        if(username && password) {
+            // 사용자 정보를 localStorage에 저장
+            localStorage.setItem(username, password);
+            alert("로그인 되었습니다.");
+            // 등록 후 로그인 페이지나 메인 페이지로 리디렉션
+            window.location.href = 'login.html';
+        } else if (!username) {
+            alert("아이디가 입력되지 않았습니다.");
+        } else if(!password){
+            alert("비밀번호가 입력되지 않았습니다.")
+        }else{
+            alert("아이디와 비밀번호 모두 입력되지 않았습니다.")
         }
     }
 </script>
@@ -63,15 +59,14 @@
     </div>
     <div class="login">
         <img id="smu_kor_img" src="images/SMU_kor.png">
-        <p>LOG IN</p>
+        <p>REGISTER</p>
         <form>    
             <fieldset>
                 <input id="username" type="text" placeholder=" ID"/><br/>
                 <input id="password" type="password"  placeholder=" password"><br/>
                 <span></span>
                 <div class="button">
-                <input id="login_button" type="submit" value="로그인" onclick="loginUser(event);"/>
-                <input id="register" type="button" value="회원가입" onclick="redirectToRegister();"/>
+                <input id="register" type="button" value="회원가입" onclick="registerUser();"/>
                 </div>
             </fieldset>
         </form> 
