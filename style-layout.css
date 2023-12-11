@@ -103,7 +103,7 @@ html, body {
 }
 .locker{
     display: flex;
-    flex-direction: row;/* 자식요소들 수직방향 정렬 */
+    flex-direction: row;/* 자식요소들 수평방향 정렬 */
     padding: 0 20px;
     margin-left: 30px;
     margin-right: 60px;
@@ -134,8 +134,11 @@ html, body {
     margin-bottom: -10px;
 }
 .inline p{
-    margin-right: 300px;
     margin-top: 0;
+}
+.inline #locker-password {
+    position: absolute;
+    right: 60%;
 }
 #regi-pay {
     margin-left: 30px;
@@ -146,12 +149,13 @@ html, body {
     width: 80px;
 }
 
-.locker button{
-    margin-left: 30px;
-    text-align: center; /* 버튼들을 중앙에 정렬 */
+#locker-password-num button{
+    position: absolute;
+    left: 5%;
 }
-#locker-date {
-    margin-right:270px;
+#locker-password-num{
+    position: absolute;
+    right: 65%;
 }
 .health_items {
     margin-right: 40px;

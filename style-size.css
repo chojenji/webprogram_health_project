@@ -32,6 +32,7 @@
 }
 .locker button{
     height: 30px;
+    width: 70px;
 }
 .health_items ol {
     width: 250px;
