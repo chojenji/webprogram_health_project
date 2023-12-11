@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SMU 헬스장</title>
+<title>마이페이지</title>
 <link rel="icon" href="images/logo_image.png">
 <link rel="stylesheet" type="text/css" href="style-size.css"/>
 <link rel="stylesheet" type="text/css" href="style-layout.css"/>
@@ -11,6 +11,10 @@
 <script type="text/javascript" src="loginStatus.js"></script>
 <script type="text/javascript">
     const CouponsNum = ['COUPON123', 'DISCOUNT20', 'PROMO2023', 'X-mas']; // 쿠폰번호 예시
+
+    function closeModal() {
+        document.getElementById('lockerModal').style.display = 'none';
+    }
 
      // 기간 선택 시 금액 계산 함수
     function calculateTotalAmount() {
@@ -26,7 +30,7 @@
 
         // 쿠폰 할인 확인
         var couponText = document.getElementById('coupon-text').value;
-        if (CouponsNum.includes(couponText.toUpperCase())) {
+        if (CouponsNum.includes(couponText)){
             totalAmount *= 0.8; // 20% 할인
         }
 
@@ -50,7 +54,9 @@
         if (dropdown && paymentMethodSelected) {
             // 기존 만료 날짜 가져오기
             var currentUserId = sessionStorage.getItem('currentUser');
-            var existingExpiryDateString = localStorage.getItem(currentUserId + '_expiryDate');
+            var userInfoString = localStorage.getItem(currentUserId);
+            var userInfo = userInfoString ? JSON.parse(userInfoString) : {};
+            var existingExpiryDateString = userInfo.expiryDate;
             var expiryDate;
 
             if (existingExpiryDateString) {
@@ -64,9 +70,10 @@
             // 새로운 결제 기간 추가
             var numberOfMonths = parseInt(selectedOption.match(/\d+/)[0]);
             expiryDate.setMonth(expiryDate.getMonth() + numberOfMonths);
-
-            // 업데이트된 만료 날짜를 로컬 스토리지에 저장
-            localStorage.setItem(currentUserId + '_expiryDate', expiryDate.toISOString());
+            
+            userInfo.expiryDate = expiryDate.toISOString()
+            // 변경된 만료 날짜를 다시 로컬 스토리지에 저장합니다.
+            localStorage.setItem(currentUserId, JSON.stringify(userInfo));
 
             updateRemainingDays();
             alert('결제되었습니다.');
@@ -81,24 +88,31 @@
     }
     // 페이지 로드 시 남은 일수 업데이트 함수
     function updateRemainingDays() {
-        var currentUserId = sessionStorage.getItem('currentUser');
-        var expiryDateString = localStorage.getItem(currentUserId + '_expiryDate');
+        var currentUserId = sessionStorage.getItem('currentUser'); // 로컬 스토리지에서 사용자 정보 가져오기
+        var userInfoString = localStorage.getItem(currentUserId);
 
-        if (expiryDateString) {
-            var expiryDate = new Date(expiryDateString);
-            var today = new Date();
-            var remainingDays = Math.round((expiryDate - today) / (1000 * 60 * 60 * 24));
+        if (currentUserId) {
+            if (userInfoString) {
+                // JSON 문자열을 객체로 변환합니다.
+                var userInfo = JSON.parse(userInfoString);
+                if (userInfo.expiryDate) {
+                    // 만료 날짜 계산
+                    var expiryDate = new Date(userInfo.expiryDate);
+                    var today = new Date();
+                    var remainingDays = Math.round((expiryDate - today) / (1000 * 60 * 60 * 24));
 
-            // 남은 일수 업데이트
-            document.getElementById('membership-date').querySelector('p:last-child').textContent = remainingDays + " 일";
+                    // 남은 일수 업데이트
+                    document.getElementById('membership-date').querySelector('p:last-child').textContent = remainingDays + " 일";
 
-            // 등록 현황 업데이트
-            if (remainingDays == 0){
-                document.getElementById('membership').querySelector('p:last-child').textContent = "미등록";
-            }else {
-                document.getElementById('membership').querySelector('p:last-child').textContent = "등록";
+                    // 등록 현황 업데이트
+                    var membershipStatus = document.getElementById('membership').querySelector('p:last-child');
+                    membershipStatus.textContent = remainingDays > 0 ? "등록" : "미등록";
+                } else {
+                    // 등록된 날짜가 없는 경우, 미등록으로 표시
+                    document.getElementById('membership-date').querySelector('p:last-child').textContent = "0 일";
+                    document.getElementById('membership').querySelector('p:last-child').textContent = "미등록";
+                }
             }
-            
         }
     }
     // 모달 (사물함 비밀번호 설정창) 화면에 표시
@@ -111,7 +125,21 @@
 
         if(lockerPassword && lockerPassword.length === 4) {
             var currentUserId = sessionStorage.getItem('currentUser');
-            localStorage.setItem(currentUserId + '_lockerPassword', lockerPassword);
+            if(currentUserId){
+                // 현재 사용자의 정보를 로컬 스토리지에서 가져옵니다.
+                var userInfoString = localStorage.getItem(currentUserId);
+                var userInfo = userInfoString ? JSON.parse(userInfoString) : {};
+
+                // 사용자 정보에 사물함 비밀번호를 추가하거나 업데이트합니다.
+                userInfo.lockerPassword = lockerPassword;
+                userInfo.lockerPasswordDate = new Date().toLocaleDateString();
+
+                // 변경된 사용자 정보를 다시 로컬 스토리지에 저장합니다.
+                localStorage.setItem(currentUserId, JSON.stringify(userInfo));
+
+            }else {
+                alert("로그인 후 등록해주세요.");
+            }
 
             document.getElementById('lockerModal').style.display = 'none'; // 모달 숨기기
             updateLockerStatus(); // 사물함 상태 업데이트
@@ -121,21 +149,31 @@
     }
     // 사물함 등록상태 업데이트
     function updateLockerStatus(){
-        //var lockerContainer = document.querySelector('.locker');
+        var currentUserId = sessionStorage.getItem('currentUser'); // 현재 사용자 정보 가져오기
+        var userInfoString = localStorage.getItem(currentUserId); // 현재 사용자id를 토대로 로컬 스토리지 정보 가져오기
+
         var lockerDate = document.querySelector('#locker-date');
         var locker_Password = document.querySelector('#locker-password-num');
-        var currentUserId = sessionStorage.getItem('currentUser');
-        var lockerPassword = localStorage.getItem(currentUserId + '_lockerPassword');
 
-        if (lockerPassword) {
-            // 사물함 비밀번호가 있으면 사물함 정보 표시
-            lockerDate.innerHTML =  new Date().toLocaleDateString();
-            locker_Password.innerHTML = lockerPassword;
-        } else {
-            // 사물함 비밀번호가 없으면 등록 메시지와 버튼 표시
-            //lockerContainer.innerHTML = '<p>사물함을 등록하세요</p><button onclick="showLockerModal();">등록하기</button>';
-            lockerDate.textContent = '사물함을 등록하세요';
-            locker_Password.innerHTML = '<button onclick="showLockerModal();">등록하기</button>';
+        if (currentUserId) {
+            // 로컬 스토리지에서 현재 사용자의 정보를 가져옵니다.
+            var userInfoString = localStorage.getItem(currentUserId);
+            var userInfo = userInfoString ? JSON.parse(userInfoString) : {};
+
+            // 사물함 비밀번호와 등록 날짜가 있으면 화면에 표시합니다.
+            if (userInfo.lockerPassword && userInfo.lockerPasswordDate) {
+                var lockerPassword = localStorage.getItem(userInfoString.lockerPassword);
+
+                lockerDate.textContent = userInfo.lockerPasswordDate;
+                locker_Password.textContent = userInfo.lockerPassword;
+            } else {
+                lockerDate.textContent = '사물함을 등록하세요';
+                locker_Password.innerHTML = '<button onclick="showLockerModal();">등록하기</button>';
+            }
+        }else {
+            // 만약 currentUser가 세션에 없다면, 사물함 등록 안내 메시지를 표시
+            document.querySelector('#locker-date').textContent = '사물함을 등록하세요';
+            document.querySelector('#locker-password-num').innerHTML = '<button onclick="showLockerModal();">등록하기</button>';
         }
     }
     //윈도우 화면이 로드되었을 때 실행되는 이벤트 리스너
@@ -143,10 +181,21 @@
         // 세션 스토리지에서 'currentUser' 항목의 값을 가져옵니다.
         var currentUserId = sessionStorage.getItem('currentUser');
         
-        // 'text-profile' ID를 가진 요소를 찾고, 존재한다면 해당 요소의 내용을 업데이트합니다.
-        var profileText = document.getElementById('text-profile');
-        if (profileText && currentUserId) {
-            profileText.textContent = currentUserId + ' 님,  안녕하세요.';
+        if (currentUserId) {
+            // 로컬 스토리지에서 사용자 정보 가져오기
+            var userInfoString = localStorage.getItem(currentUserId);
+
+            if (userInfoString) {
+                // JSON 문자열을 객체로 변환합니다.
+                var userInfo = JSON.parse(userInfoString);
+
+                // 'text-profile' ID를 가진 요소를 찾고, 존재한다면 해당 요소의 내용을 업데이트합니다.
+                var profileText = document.getElementById('text-profile');
+                if (profileText) {
+                    // 사용자 이름으로 화면에 인사말을 표시합니다.
+                    profileText.textContent = userInfo.username + ' 님, 안녕하세요.';
+                }
+            }
         }
     
         // 페이지 로드 시 남은 일수 업데이트
@@ -254,7 +303,7 @@
 <!-- 사물함 등록 모달 -->
 <div id="lockerModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <span class="close" onclick="closeModal();">&times;</span>
         <h3>사물함 등록</h3>
         <input id="lockerPasswordInput" type="text" maxlength="4" placeholder="4자리 비밀번호" pattern="\d{4}" required>
         <button onclick="saveLockerPassword();">등록</button>

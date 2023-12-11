@@ -68,7 +68,8 @@ html {
 .login form, .login form fieldset {
     border : none;
 }
-.login fieldset input#username, .login fieldset input#password {
+.login fieldset input#username, .login fieldset input#password,
+.login fieldset input#userid{
     background-color: #8FA2C7;
     border-color: #8FA2C7;
     border-style: solid;
@@ -158,4 +159,21 @@ html {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#sidebar a:hover {
+    background-color: #555;
+}
+
+.faq-item .Q {
+    font-size: 15pt;
+    color: rgba(35, 38, 40, 0.6);
+}
+.faq-item .A {
+    font-size: 15pt;
+    color:#8FA2C7;
+    font-weight: bold;
+}
+.health_html .title {
+    border-bottom: 2px solid #0F3178;
 }

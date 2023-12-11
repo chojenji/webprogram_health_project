@@ -4,7 +4,12 @@ html, body {
     width: 100%;
     height: 100%;
 }
-.html_screen {margin-top: 60px; padding-left: 50px;}
+.html_screen {margin-top: 60px; padding-left: 50px; }
+.notice_html {margin-top: 60px; padding-right: 50px;}
+.faq_html {margin-top: 60px; padding-left: 50px; padding-right: 100px; margin-bottom: 60px;}
+.health_html {
+    margin-top: 60px; padding-left: 50px;
+}
 .login {
     display: flex;
     flex-direction: column; /* 자식요소들 수직방향 정렬 */
@@ -39,6 +44,7 @@ html, body {
 .title h2, h4 {display: inline-block;}
 .title h2 {margin-top: 50px;}
 .title h4 {margin-left: 15px; margin-top: 50px;}
+.health_html .title {margin-right: 50px;padding-bottom: 20px;}
 #mypage-title {
     display: inline-block;
     margin:20 20px;
@@ -158,6 +164,7 @@ html, body {
     right: 65%;
 }
 .health_items {
+    margin-top: 20px;
     margin-right: 40px;
     display: flex;
     flex-wrap: wrap;
@@ -173,4 +180,102 @@ html, body {
     margin-bottom: 5px; 
     margin-top: 0;
     margin-left: -15px;
+}
+
+#sidebar {
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    background-color: #0f307865;
+    padding-top: 20px;
+}
+
+#sidebar a {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    display: block;
+    transition: 0.3s;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.faq-item {
+    padding: 5px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+
+#notice {
+    margin-left: 200px;
+}
+.board_list_wrap{
+    margin-top: 20px;
+}
+
+.faq_list_wrap {
+    margin-top: 20px;
+}
+
+.faq_list_wrap .num {
+    width: 10%;
+    padding-left: 30px;
+    text-align: center;
+}
+
+.faq_list_wrap .title {
+    width: 60%;
+    text-align: left;
+}
+
+.faq_list_wrap .top .title {
+    text-align: center;
+    width: 700px;
+}
+
+.faq_list {
+    border-top: 2px solid #0F3178;
+}
+.faq_list > div > div, .faq-container > div > div{
+    display: inline-block;
+    padding: 15px 0;
+    text-align: left;
+    font-size: 10pt;
+}
+.faq_list .top{
+    border-bottom: 1px solid #999;
+}
+
+.top .num, .top .title, .top .date {
+    height: 30px;
+}
+.faq_list > div.top > div {
+    font-weight: 600;
+}
+.faq_list .title {
+    height: auto;
+}
+.faq-item .title {
+    padding-left: 20px;
+}
+.faq-answer {
+    margin-left: 200px;
+}
+
+.faq_list > div:last-child {
+    border-bottom: 2px solid #0F3178;
+}
+.faq-item div p {
+    display: inline-block;
 }

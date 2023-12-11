@@ -11,21 +11,40 @@
 <script type="text/javascript" src="loginStatus.js"></script>
 <script type="text/javascript">
     function registerUser() {
+        var userid = document.getElementById('userid').value;
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         
-        if(username && password) {
-            // 사용자 정보를 localStorage에 저장
-            localStorage.setItem(username, password);
-            alert("로그인 되었습니다.");
+        // 사용자 정보 객체를 생성합니다.
+        var userInfo = {
+            username: username,
+            password: password,
+            // expiryDate와 lockerPassword는 현재는 빈 문자열로 초기화합니다.
+            // 나중에 적절한 값을 할당해야 할 것입니다.
+            expiryDate: '',
+            lockerPassword: '',
+            lockerPasswordDate: ''
+        };
+
+        if(userid && username && password) {
+            // 사용자 정보 객체를 JSON 문자열로 변환합니다.
+            var userInfoString = JSON.stringify(userInfo);
+
+            // JSON 문자열을 로컬 스토리지에 저장합니다.
+            localStorage.setItem(userid, userInfoString);
+
+            alert("회원가입에 성공하셨습니다.");
             // 등록 후 로그인 페이지나 메인 페이지로 리디렉션
             window.location.href = 'login.html';
-        } else if (!username) {
+        } else if (!userid) {
             alert("아이디가 입력되지 않았습니다.");
         } else if(!password){
-            alert("비밀번호가 입력되지 않았습니다.")
-        }else{
-            alert("아이디와 비밀번호 모두 입력되지 않았습니다.")
+            alert("비밀번호가 입력되지 않았습니다.");
+        }else if(!username){
+            alert("이름이 입력되지 않았습니다.");
+        }
+        else{
+            alert("아이디와 비밀번호 모두 입력되지 않았습니다.");
         }
     }
 </script>
@@ -56,7 +75,8 @@
         <p>REGISTER</p>
         <form>    
             <fieldset>
-                <input id="username" type="text" placeholder=" ID"/><br/>
+                <input id="username" type="text" placeholder=" Name"/><br/>
+                <input id="userid" type="text" placeholder=" ID"/><br/>
                 <input id="password" type="password"  placeholder=" password"><br/>
                 <span></span>
                 <div class="button">
