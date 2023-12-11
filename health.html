@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMU 헬스장</title>
+<link rel="icon" href="images/logo_image.png">
+<link rel="stylesheet" type="text/css" href="style-size.css"/>
+<link rel="stylesheet" type="text/css" href="style-layout.css"/>
+<link rel="stylesheet" type="text/css" href="style-presentation.css"/>
+<script type="text/javascript" src="loginStatus.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var dropdownLinks = document.querySelectorAll('.menu_bar .dropdown > a');
+
+    dropdownLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // 클릭 시 페이지 이동 방지
+            });
+        });
+    });
+
+    // 이미지 요소에 마우스가 올라갔을 때 실행할 함수를 정의합니다.
+    function mouseOverImage(imageElement, hoverImagePath) {
+        imageElement.src = hoverImagePath;
+    }
+
+    // 이미지 요소에서 마우스가 벗어났을 때 실행할 함수를 정의합니다.
+    function mouseOutImage(imageElement, originalImagePath) {
+        imageElement.src = originalImagePath;
+    }
+
+    function link(src){
+
+    }
+    window.addEventListener('load', function(){
+        // 클래스 이름 'changeable-image'를 가진 모든 이미지 요소를 선택합니다.
+        var images = document.querySelectorAll('.changeable-image');
+
+        if(images){
+            images.forEach(function(image) {
+                // 이미지에 마우스 오버 이벤트 리스너를 추가합니다.
+                image.addEventListener('mouseover', function() {
+                    this.src = this.getAttribute('data-hover'); // 마우스 오버 시 이미지 경로 변경
+                });
+                // 이미지에 마우스 아웃 이벤트 리스너를 추가합니다.
+                image.addEventListener('mouseout', function() {
+                    this.src = this.getAttribute('data-original'); // 마우스 아웃 시 원래 이미지 경로로 복원
+                });
+            });
+        }else{
+            console.error('Image was not found.');
+        }
+    });
+</script>
+</head>
+
+<body>
+    <div class="menu_bar">
+        <a href="main.html"><img src="images/sum_logo_menu.png" alt="SMU LOGO"/></a>
+        <ul>
+            <li class="dropdown"><a href="#">헬스장 소개</a>
+                <div class="dropdown-content">
+                    <a href="introduce_location.html">위치 및 정보</a>
+                    <a href="introduce_calender.html">운영시간</a>
+                    <a href="introduce_trainers.html">트레이너 소개</a>
+                </div>
+            </li>
+            <li><a href="notice.html">공지사항</a></li>
+            <li><a href="health.html">운동기구 소개</a></li>
+            <li><a href="service_center.html">고객센터</a></li>
+        </ul>
+        <span>
+            <a href="login.html" id="loginLink">로그인</a>
+            /
+            <a href="mypage.html">마이페이지</a>
+        </span>
+    </div>
+
+    <div class="html_screen">
+        <div class="title">
+            <h2>운동기구 소개</h2>
+        </div>
+        <div class="health_items">
+            <div class="health-inline">
+            <a href="https://www.youtube.com/watch?v=0AL9SOubeTM" target="_blank">
+            <img src="images/abdominal_img.jpg" class="changeable-image"
+            data-hover="images/abdominis.jpg" 
+            data-original="images/abdominal_img.jpg"></a>
+            <ol><p>Adominal</p>
+            <li>의자에 똑바로 앉아 가슴패드가 가슴 앞에 오도록 패드를 조절합니다</li>
+            <li>짧은 동작으로 가슴 패드를 아래로 밀어 구부립니다</li>
+            <li>발과 다리를 넓게 벌릴수록 복근을 더욱 강화할 수 있습니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+            target muscle : 복직근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/x7u3FO4iTvg?feature=share" target="_blank">
+            <img src="images/rotary_torso_img.jpg" class="changeable-image"
+            data-hover="images/external_oblique.jpg" 
+            data-original="images/rotary_torso_img.jpg"></a>
+            <ol><p>Rotary Torso</p>
+            <li>의자에 앉아 양쪽 팔걸이를 오른쪽 또는 왼쪽으로 돌리십시오. 
+                의자에 앉을 떄와 운동을 마친 후 의자로부터 일어날 때에만 팔걸이를 중앙에 위치하도록 합니다</li>
+            <li>2개의 롤러패드 사이에 각각 팔을 끼우고 2개의 손잡이 중 편한 쪽을 잡으십시오</li>
+            <li>가능한한 멀리 몸을 반대방향으로 돌리십시오. 처음위치로 되돌아온 후 같은 동작을 반복합니다</li>
+            <li>한쪽 편 운동을 마친 후, 팔걸이를 반대방향으로 돌리고 반대쪽 근육 운동을 한 후 
+                팔걸이를 중앙에 위치시키고 의자에서 일어나십시오</li>
+                target muscle : 외복사근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/-fGigiumPRE?feature=share" target="_blank">
+            <img src="images/lat_pulldown_img.jpg" class="changeable-image"
+            data-hover="images/latissimus.jpg" 
+            data-original="images/lat_pulldown_img.jpg"></a>
+            <ol><p>Lat Pulldown</p>
+            <li>롤러패드가 허벅지 위쪽에 놓이도록 높이를 조절하고
+                레트바 양쪽 그립을 잡고 롤러패드에 허벅지를 조심스럽게 끼우면서 앉습니다</li>
+            <li>래트바를 가슴 앞쪽을 향해서 아래로 당깁니다</li>
+            <li>이떄, 승모근이 올라가지 않도록 주의합니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 광배근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/BXKuuA4dZbk?feature=share" target="_blank">
+            <img src="images/seated_low_img.jpg" class="changeable-image"
+            data-hover="images/latissimus.jpg" 
+            data-original="images/seated_low_img.jpg"></a>
+            <ol><p>Seated Low</p>
+            <li>패드가 가슴 중앙에 오도록 의자 높이를 조절한 후, 팔을 뻗어 핸들이 닿을 수 
+                있도록 가슴 패드를 조절하십시오</li>
+            <li>발을 발받침대에 놓고 앉아 두가지 중 한 핸들을 잡으시오</li>
+            <li>전완이 바닥과 평행을 유지하도록 하면서 가슴쪽으로 당깁니다.
+                이때 승모근이 긴장되지 않도록 주의하며 팔꿈치가 밖으로 빠지지 않도록 합니다</li>
+            <li>처음 위치로 되돌아온 후 같은 동작을 반복합니다</li>
+                target muscle : 광배근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/R92NR7r_6NU?feature=share" target="_blank">
+            <img src="images/shoulder_press_img.jpg" class="changeable-image"
+            data-hover="images/deltoid.jpg" 
+            data-original="images/shoulder_press_img.jpg"></a>
+            <ol><p>Shoulder Press</p>
+            <li>두 종류의 핸들 중 편한 쪽을 잡으시오</li>
+            <li>이때, 팔꿈치는 가슴과 수평 또는 약간 앞을 향하도록하고, 상완은 바닥과 평행이 되도록 합니다</li>
+            <li>팔을 위로 향하여 뻗어주십시오</li>
+            <li>처음위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 삼각근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/H5jl0EJHKeQ?feature=share" target="_blank">
+            <img src="images/pec_fly_img.jpg" class="changeable-image"
+            data-hover="images/posterior_deltoid.jpg" 
+            data-original="images/pec_fly_img.jpg"></a>
+            <ol><p>Reverse Pec-deck Fly</p>
+            <li>위의 핀을 당겨 팔걸이를 P 또는 1, 2, 3의 위치에 고정합니다</li>
+            <li>팔이 바닥과 평행이 되도록 의자 높이를 조절합니다</li>
+            <li>위 또는 아래 손잡이를 잡고 양팔이 가능한 뒤로 당기십시오</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 후면 삼각근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/E7bdlAP9qnY?feature=share" target="_blank">
+            <img src="images/seated_chest_img.jpg" class="changeable-image"
+            data-hover="images/chest.jpg" 
+            data-original="images/seated_chest_img.jpg"></a>
+            <ol><p>Seated Chest</p>
+            <li>페달을 밟아 좌우 핸들이 앞으로 오면, 2종류의 핸들 중 편한 쪽을 택하여 잡은 후 페달에서 발을 떼십시오</li>
+            <li>이때 팔은 가슴높이에서 바닥과 평행이 되도록 합니다</li>
+            <li>팔꿈치의 각도가 90도가 되도록 팔꿈치를 굽힙니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 대흉근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/I_ubqpuxI18?feature=share" target="_blank">
+            <img src="images/pec_fly_img.jpg" class="changeable-image"
+            data-hover="images/chest.jpg" 
+            data-original="images/pec_fly_img.jpg"></a>
+            <ol><p>Pec-deck Fly</p>
+            <li>위의 핀을 당겨 팔걸이를 7, 8 또는 6에 맞추고 팔이 바닥과 평행이 되도록 의자높이를 조절합니다</li>
+            <li>아래쪽 손잡이를 잡고 두 손이 닿을 때까지 가운데 앞으로 당기십시오</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 대흉근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/sGJQq7095cs" target="_blank">
+            <img src="images/hack_squaw_img.jpg" class="changeable-image"
+            data-hover="images/thighs_glutes.jpg" 
+            data-original="images/hack_squaw_img.jpg"></a>
+            <ol><p>Hack Squaw</p>
+            <li>어깨 패드에 어깨를 가져다 댑니다</li>
+            <li>발판에 양발을 어깨너비로 잘 정렬합니다</li>
+            <li>엉덩이가 정강이 높이까지 많이 내려가지 않게 주의하며 앉습니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 대퇴근, 둔근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/6k7fBUE3rec?feature=share" target="_blank">
+            <img src="images/leg_press_img.jpg" class="changeable-image"
+            data-hover="images/thighs_glutes.jpg" 
+            data-original="images/leg_press_img.jpg"></a>
+            <ol><p>Leg Press</p>
+            <li>등받이를 뒤로 밀고 의자에 앉아 발받침에 발을 올려 놓습니다</li>
+            <li>이때, 양발의 간격은 어깨넓이만큼 벌리고 발뒤꿈치가 발받침 하단으로부터 3~5cm 위에 놓이도록 합니다.
+                발을 더 위에 놓으면 대퇴사두근을 더욱 강화시킬 수 있습니다</li>
+            <li>레버를 당겨 무릎이 90도가 되도록 의자 위치를 조절한 후 
+                앞뒤로 움직여 핀이 가까운 구멍에 걸리도록 한 후 핸들을 잡습니다</li>
+            <li>다리와 엉덩이로 발받침을 미십시오. 무릎은 완전히 펴지않고 마지막 동작에서 약간 굽어야합니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 대퇴근, 둔근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/rXdlz4t9Ne0?feature=share" target="_blank">
+            <img src="images/leg_extension_img.jpg" class="changeable-image"
+            data-hover="images/thighs.jpg" 
+            data-original="images/leg_extension_img.jpg"></a>
+            <ol><p>Leg Extension</p>
+            <li>왼편에 있는 신장조견표에 따라 등받이를 조절합니다</li>
+            <li>기계의 회전축과 무릎축이 일치하도록 앉았을 떄 정강이 패드가 발목 앞에 오도록 패드 길이를 조절합니다</li>
+            <li>양쪽에 있는 핸들을 잡고 무릎이 무리 하지 않는 선까지 다리로 정강이 패드를 들어올립니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 대퇴근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/T2nuk5rDgtQ?feature=share" target="_blank">
+            <img src="images/leg_curl_img.jpg" class="changeable-image"
+            data-hover="images/hamstring.jpg" 
+            data-original="images/leg_curl_img.jpg"></a>
+            <ol><p>Leg Curl</p>
+            <li>기계의 회전축과 무릎축이 일치하도록 엎드렸을 떄 패드가 발목 뒤에 오도록 패드 길이를 조절합니다</li>
+            <li>암패드에 팔을 올리고 손잡이를 잡습니다</li>
+            <li>다리로 패드를 들어 엉덩이 뒤로 당깁니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 넙다리두갈래근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://youtu.be/qn9CkpWbsq4" target="_blank">
+            <img src="images/multi_hip_img.jpg" class="changeable-image"
+            data-hover="images/glutes.jpg" 
+            data-original="images/multi_hip_img.jpg"></a>
+            <ol><p>Multi Hip</p>
+            <li>발판에 서서 앞쪽에 있는 손잡이를 잡고, 패드위에 운동할 허벅지 뒷부분을 살짝 올려놓습니다</li>
+            <li>발끝을 하늘로 올리는 느낌으로 골반이 움직이지 않을 정도까지 올립니다</li>
+            <li>이때, 골반이 상하좌우로 움직이지 않도록 주의합니다</li>
+            <li>처음위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 둔근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/watch?v=OHU7NLR_C4g" target="_blank">
+            <img src="images/biceps_curl_img.jpg" class="changeable-image"
+            data-hover="images/biceps.jpg" 
+            data-original="images/biceps_curl_img.jpg"></a>
+            <ol><p>Biceps Curl</p>
+            <li>발을 앞으로 놓고 앉으면서 핸들을 잡습니다</li>
+            <li>의자 높이 위 또는 아래로 1단씩 조절하면서 운동범위를 조절할 수 있습니다
+                또한 손잡이를 잡는 손의 각도와 간격을 조절하면 강화되는 근육의 범위를 변경할 수 있습니다</li>
+            <li>팔을 위로 구부립니다</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 이두근
+            </ol>
+            </div>
+            <div class="health-inline">
+            <a href="https://www.youtube.com/shorts/v4_O0cRw1p8?feature=share" target="_blank">
+            <img src="images/tricep_extension_img.jpg" class="changeable-image"
+            data-hover="images/triceps_brachii.jpg" 
+            data-original="images/tricep_extension_img.jpg"></a>
+            <ol><p>Overhead Tricep Extenstion</p>
+            <li>의자에 앉아 발을 발 받침에 놓은 후 보조 페달을 밟으십시오</li>
+            <li>양손을 머리 뒤로 올려 핸들을 잡은 후 보조 페달에서 발을 떼십시오</li>
+            <li>등을 등받이에 고정하고 팔꿈치는 앞을 향한 자세에서 팔을 위로 올리십시오</li>
+            <li>처음 위치로 되돌아 온 후 같은 동작을 반복합니다</li>
+                target muscle : 삼두근
+            </ol>
+            </div>
+         </div>
+    </div>
+</body>
+</html>
