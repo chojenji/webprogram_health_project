@@ -289,3 +289,6 @@ html, body {
 .icons, .subtitle {
     display: flex;
 }
+.notice_title{
+    padding: 10px;
+}
