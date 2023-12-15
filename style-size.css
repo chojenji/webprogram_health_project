@@ -53,3 +53,10 @@
     width: 867px;
     height: auto;
 }
+#title_p{
+    font-size: 9pt;
+}
+.icons {
+    width: 25px;
+    height: 25px;
+}

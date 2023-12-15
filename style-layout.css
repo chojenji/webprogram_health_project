@@ -282,3 +282,10 @@ html, body {
 .profile_trainer{
     margin: 40px 0px;
 }
+#title_p{
+    position: absolute;
+    right: 10%;
+}
+.icons, .subtitle {
+    display: flex;
+}

@@ -177,3 +177,10 @@ html {
 .health_html .title {
     border-bottom: 2px solid #0F3178;
 }
+#title_p{
+    color: #ff0d00;
+}
+.health_items ol p{
+    font-weight: bold;
+    font-size: 13pt;
+}
